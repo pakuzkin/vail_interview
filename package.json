@@ -4,7 +4,7 @@
   "description": "",
   "main": "index.js",
   "scripts": {
-    "serve": "node index.js",
+    "serve": "NODE_ENV=DEV node index.js",
     "test": "npx mocha endpoint.test.js"
   },
   "repository": {

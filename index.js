@@ -12,7 +12,7 @@ app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/api/ping', (req, res) => {
     const msg = req.query.message
-    const env = process.env.NODE_ENV || 'development';
+    const env = process.env.NODE_ENV || 'TEST';
     const version = packageJson.version || 'unknown';
     const response = {
         "echo": msg,
