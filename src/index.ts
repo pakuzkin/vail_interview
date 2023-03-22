@@ -11,7 +11,7 @@ const app = express();
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-async function getEchoResponse(message: string): Promise<any> {
+export async function getEchoResponse(message: string): Promise<any> {
     try {
         const response = await axios.get('https://postman-echo.com/get', {
             params: {
