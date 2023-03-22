@@ -5,9 +5,7 @@
   "main": "index.ts",
   "scripts": {
     "start": "tsc && NODE_ENV=DEV node dist/src/index.js",
-    "serve": "NODE_ENV=DEV node index.ts",
-    "test": "npx mocha endpoint.test.js",
-    "build-dist": "./node_modules/typescript/bin/tsc"
+    "test": "npx mocha endpoint.test.js"
   },
   "repository": {
     "type": "git",
