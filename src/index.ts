@@ -1,9 +1,9 @@
 import express, { Request, Response } from 'express';
 import packageJson from '.././package.json';
-import http from "http";
-import querystring from 'querystring';
 import swaggerUi from 'swagger-ui-express';
 import swaggerDocument from '.././swagger.json'; // Replace with your Swagger definition file
+import axios from 'axios';
+
 
 const PORT = 30000;
 
@@ -11,31 +11,18 @@ const app = express();
 
 app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
-async function postman_echo() {
-    const params = {
-        'foo': 'bar',
-        'baz': 'qux'
-    };
-
-    const options: http.RequestOptions = {
-        hostname: 'postman-echo.com',
-        path: '/get?' + querystring.stringify(params),
-        method: 'GET'
-    };
-
-    const req = http.request(options, (res) => {
-        console.log(`statusCode: ${res.statusCode}`);
-
-        res.on('data', (data) => {
-            console.log(data.toString());
+async function getEchoResponse(message: string): Promise<any> {
+    try {
+        const response = await axios.get('https://postman-echo.com/get', {
+            params: {
+                message: message
+            }
         });
-    });
-
-    req.on('error', (error) => {
+        return response.data;
+    } catch (error) {
         console.error(error);
-    });
-
-    req.end();
+        return null;
+    }
 }
 
 app.get('/api/ping', async (req: Request, res: Response) => {
@@ -43,10 +30,9 @@ app.get('/api/ping', async (req: Request, res: Response) => {
     const env = process.env.NODE_ENV || 'TEST';
     const version = packageJson.version || 'unknown';
 
-    await postman_echo();
-
+    const echo = await getEchoResponse(msg);
     const response = {
-        "echo": msg,
+        "echo": echo,
         "timestamp": Date.now(),
         "env": env,
         "version": version,

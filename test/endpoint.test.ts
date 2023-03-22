@@ -13,12 +13,15 @@ describe('Endpoint tests', () => {
                 "message": msg
             })
             .end((err, res) => {
-                console.log(res.body);
                 chai.expect(res).to.have.status(200);
-                const body = res.body;
-                chai.assert.equal(msg, body.echo, "Wrong echo message returned");
-                chai.assert.equal("1.0.0", body.version, "Wrong version returned");
-                chai.assert.equal("TEST", body.env, "Wrong env returned");
+
+                chai.expect(res.body).to.have.property("echo")
+                chai.expect(res.body.echo).to.have.property("url", 'https://postman-echo.com/get?message=hello')
+                chai.expect(res.body.echo).to.have.property("args")
+                chai.expect(res.body.echo.args).to.have.property("message", msg)
+
+                chai.expect(res.body).to.have.property("env", "TEST")
+                chai.expect(res.body).to.have.property("version", "1.0.0")
                 done();
             });
     });
