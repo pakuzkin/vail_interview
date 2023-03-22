@@ -2,10 +2,12 @@
   "name": "vail_interview",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "index.ts",
   "scripts": {
-    "serve": "NODE_ENV=DEV node index.js",
-    "test": "npx mocha endpoint.test.js"
+    "start": "tsc && NODE_ENV=DEV node dist/src/index.js",
+    "serve": "NODE_ENV=DEV node index.ts",
+    "test": "npx mocha endpoint.test.js",
+    "build-dist": "./node_modules/typescript/bin/tsc"
   },
   "repository": {
     "type": "git",
@@ -20,9 +22,12 @@
   "homepage": "https://github.com/pakuzkin/vail_interview#readme",
   "dependencies": {
     "express": "^4.18.2",
-    "swagger-ui-express": "^4.6.2"
+    "swagger-ui-express": "^4.6.2",
+    "typescript": "^5.0.2"
   },
   "devDependencies": {
+    "@types/express": "^4.17.17",
+    "@types/swagger-ui-express": "^4.1.3",
     "chai": "^4.3.7",
     "chai-http": "^4.3.0",
     "mocha": "^10.2.0"
