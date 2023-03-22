@@ -23,6 +23,6 @@ app.get('/api/ping', (req, res) => {
     res.send(response)
 })
 
-app.listen(PORT, () => {
+module.exports = app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`)
 })
