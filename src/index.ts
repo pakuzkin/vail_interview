@@ -57,3 +57,5 @@ app.get('/api/ping', async (req: Request, res: Response) => {
 app.listen(PORT, () => {
     console.log(`Server listening on port ${PORT}`);
 });
+
+export { app };
