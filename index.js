@@ -1,11 +1,14 @@
 const express = require('express')
-const app = express()
+const packageJson = require('./package.json');
+
 const PORT = 30000
+
+const app = express()
 
 app.get('/api/ping', (req, res) => {
     const msg = req.query.message
     const env = process.env.NODE_ENV || 'development';
-    const version = process.env.APP_VERSION || 'unknown';
+    const version = packageJson.version || 'unknown';
     const response = {
         "echo": msg,
         "timestamp": Date.now(),
