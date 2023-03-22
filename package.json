@@ -18,6 +18,7 @@
   },
   "homepage": "https://github.com/pakuzkin/vail_interview#readme",
   "dependencies": {
-    "express": "^4.18.2"
+    "express": "^4.18.2",
+    "swagger-ui-express": "^4.6.2"
   }
 }

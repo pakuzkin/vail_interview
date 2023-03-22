@@ -1,0 +1,62 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Vial Interview",
+    "version": "1.0.0"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:30000",
+      "description": "Local server"
+    }
+  ],
+  "paths": {
+    "/api/ping": {
+      "get": {
+        "summary": "Ping Endpoint",
+        "description": "Takes an incoming parameter named “message” and returns an object with the following parameters:\n\necho - response from postman echo service (Postman Echo ) called with ?message=[message param incoming value]\n\ntimestamp - current unix time\n\nenv - the current environment from the config\n\nversion - the current build version\n\n",
+        "parameters": [
+          {
+            "name": "message",
+            "in": "query",
+            "description": "Message to be echoed",
+            "required": false,
+            "schema": {
+              "type": "string"
+            }
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Success response",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "type": "object",
+                  "properties": {
+                    "message": {
+                      "type": "string",
+                      "example": "pong"
+                    },
+                    "timestamp": {
+                      "type": "integer",
+                      "example": "1679505621662"
+                    },
+                    "env": {
+                      "type": "string",
+                      "example": "development"
+                    },
+                    "version": {
+                      "type": "string",
+                      "example": "1.0.0"
+                    }
+                  }
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  }
+}

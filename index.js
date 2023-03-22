@@ -1,9 +1,14 @@
 const express = require('express')
 const packageJson = require('./package.json');
+const swaggerUi = require('swagger-ui-express');
+const swaggerDocument = require('./swagger.json'); // Replace with your Swagger definition file
+
 
 const PORT = 30000
 
 const app = express()
+
+app.use('/api-docs', swaggerUi.serve, swaggerUi.setup(swaggerDocument));
 
 app.get('/api/ping', (req, res) => {
     const msg = req.query.message
